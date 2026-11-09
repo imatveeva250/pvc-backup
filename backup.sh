@@ -80,7 +80,9 @@ done
 for e in $EXCLUDES; do
     echo "./${e}" >> "$excl_file"
 done
-tar -C "$SOURCE_DIR" -X "$excl_file" -cf - . | tar -C "$STAGE_DIR" -xf -
+# --no-overwrite-dir: STAGE_DIR is a volume mount owned by root; a non-root
+# user may not change its mode or times, and tar would otherwise fail on ".".
+tar -C "$SOURCE_DIR" -X "$excl_file" -cf - . | tar -C "$STAGE_DIR" --no-overwrite-dir -xf -
 rm -f "$excl_file"
 
 # Databases: consistent online copy, then verify the copy.
