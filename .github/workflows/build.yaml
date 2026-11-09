@@ -1,0 +1,2 @@
+mkdir -p .github/workflows
+cp ../cluster-status/.github/workflows/build.yaml .github/workflows/build.yaml
