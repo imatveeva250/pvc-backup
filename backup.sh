@@ -80,13 +80,13 @@ done
 for e in $EXCLUDES; do
     echo "./${e}" >> "$excl_file"
 done
-
 # Archive the entries inside SOURCE_DIR, not "." itself. STAGE_DIR is a volume
 # mount owned by root; with a "." entry tar would try to copy the source
 # directory's mode and times onto it, which a non-root user may not do.
 ( cd "$SOURCE_DIR" && find . -mindepth 1 -maxdepth 1 -print0 ) \
     | tar -C "$SOURCE_DIR" -X "$excl_file" --null -T - -cf - \
     | tar -C "$STAGE_DIR" -xf -
+rm -f "$excl_file"
 
 # Databases: consistent online copy, then verify the copy.
 for db in $SQLITE_DBS; do
