@@ -1,3 +1,11 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json"
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "packageRules": [
+    {
+      "description": "Stay on Python 3.14 patches until every dependency ships 3.15 wheels (PyYAML had none for arm64 on 2026-11-12)",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["python"],
+      "allowedVersions": "/^3\\.14\\./"
+    }
+  ]
 }
