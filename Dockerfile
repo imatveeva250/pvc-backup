@@ -1,6 +1,6 @@
 # restic binary from the official image, on a current Alpine base.
 # Renovate tracks both FROM lines.
-FROM restic/restic:0.19.1 AS restic
+FROM restic/restic:0.20.0 AS restic
 
 FROM alpine:3.24.4
 
